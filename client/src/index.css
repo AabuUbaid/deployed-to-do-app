@@ -186,3 +186,68 @@ input.pro {
 .modal label {
     font-size: 13px;
 }
+
+/* Auth */
+.auth-conatiner {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.auth-conatiner-box {
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+
+}
+
+.auth-conatiner-box form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 350px;
+    padding: 10px;
+}
+
+.auth-option {
+    display: flex;
+}
+
+.auth-option button {
+    width: 50%;
+    border: none;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: 550;
+}
+
+.copyright {
+    font-size: 13px;
+    margin: 10px;
+    color: cornflowerblue;
+}
+
+.user-email {
+    float: right;
+    font-size: 18px;
+    margin: 10px;
+    color: cornflowerblue;
+}
+
+.outer-bar {
+    width: 200px;
+    height: 14px;
+    background-color: #DCE4C9;
+    border-radius: 7px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.inner-bar {
+    height: 14px;
+}
+
+.task-title {
+    width: 300px;
+}

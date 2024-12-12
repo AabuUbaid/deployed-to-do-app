@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
+import { useCookies } from "react-cookie"
 
 const Modal = ({ mode, setShowModal, getData, task }) => {
+    const [cookies, setCookie, removeCookies] = useCookies(null)
     const editMode = mode === "edit" ? true : false
+    const serverUrl = process.env.REACT_APP_TODO_SERVER_URL || "http://localhost:8000"
 
     const [data, setData] = useState({
-        user_email: editMode ? task.user_email : "asra@test.com",
+        user_email: editMode ? task.user_email : cookies.Email,
         title: editMode ? task.title : "",
         progress: editMode ? task.progress : 50,
-        date: editMode ? "" : new Date()
+        date: editMode ? task.date : new Date()
     })
 
     const postData = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch('http://localhost:8000/todos', {
+            const response = await fetch(`${serverUrl}/todos`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -26,6 +29,25 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
 
         } catch (error) {
             console.error(error);
+        }
+    }
+
+
+
+    const editData = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch(`${serverUrl}/todos/${task.id}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            if (response.status === 200) {
+                setShowModal(false)
+                getData()
+            }
+        } catch (err) {
+            console.error(err);
         }
     }
 
@@ -70,7 +92,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
                         onChange={handleChange}
                     />
                     <p>Current Progress: {data.progress}%</p>
-                    <input className={mode} type='submit' onClick={editMode ? '' : postData} />
+                    <input className={mode} type='submit' onClick={editMode ? editData : postData} />
                 </form>
             </div>
         </div>
