@@ -128,7 +128,3 @@ Both the frontend and backend are deployed on **Render**:
 [GitHub](https://github.com/AabuUbaid) • [Portfolio](https://aabuubaid.github.io/portfolio/)
 
 ---
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
